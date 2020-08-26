@@ -5,7 +5,7 @@ var config = require("../authconfig");
 
 var autenticacaoController = {};
 
-autenticacaoController.registaUtilizador = function(req,res){
+autenticacaoController.createUser = function(req,res){
     var hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
     User.create({
@@ -66,7 +66,7 @@ autenticacaoController.verifyToken = function (req, res, next) {
 autenticacaoController.updatePassword = async function(req,res){
     var hashedPassword = bcrypt.hashSync(req.body.password);
 
-    User.findByIdAndUpdate({_id: req.body._id}, {$set:{password: hashedPassword, contacto: req.body.contacto}}, function(err){
+    User.findByIdAndUpdate({_id: req.params.id}, {$set:{password: hashedPassword, contacto: req.body.contacto}}, function(err){
         if(err)
             console.log(err);
         else
@@ -74,6 +74,15 @@ autenticacaoController.updatePassword = async function(req,res){
     });
  
 };
+
+autenticacaoController.deleteUser = function(req, res){
+
+    User.findByIdAndDelete({_id: req.params.id}, function(err){
+        if(err) return res.status(400).send("Não foi possível eliminar");
+
+        res.status(200).send("Eliminado com sucesso !");
+    });
+}
 
 
 module.exports = autenticacaoController;

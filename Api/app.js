@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/authRoute');
 var menuRouter = require('./routes/menuRoute');
+var reservationRouter = require('./routes/reservationRoute');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', authRouter, menuRouter);
+app.use('/', authRouter, menuRouter, reservationRouter);
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 

@@ -19,7 +19,8 @@ var reservaSchema = new Schema({
     },
     estado:{
         type: String,
-        enum: ["Confirmado","Pendente"]
+        enum: ["Confirmado","Pendente","Cancelada"],
+        default: "Pendente"
     }
 });
 
