@@ -14,6 +14,7 @@ var userSchema = new Schema({
     tipo:{
         type: String,
         enum: ["Utilizador","Admin"],
+        default: "Utilizador"
     },
     contacto:{
         type: Number,
