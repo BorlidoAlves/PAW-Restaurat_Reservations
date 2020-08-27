@@ -27,12 +27,21 @@ reservationController.deleteReservation = function(req, res){
 
 reservationController.updateReservation = function(req, res){
 
-    console.log(req.params.id);
     Reservation.findByIdAndUpdate({_id: req.params.id}, {$set:{horario: req.body.horario, numPessoas: req.body.numPessoas, pedidoEspecial: req.body.pedidoEspecial, estado: "Pendente"}}, function(err){
         
         if(err) return res.status(400).send("Não foi possível atualizar");
 
         res.status(200).send("Atualizado com sucesso !");
+    });
+}
+
+reservationController.getReservationUser = function(req, res){
+
+    Reservation.find({idCliente: req.params.idCliente}, function(err, reservations){
+
+        if(err) return res.status(400).send("Não foi possível encontrar");
+
+        res.json(reservations);
     });
 }
 

@@ -7,7 +7,7 @@ router.post("/createReservation", reservationController.createReservation);
 
 router.post("/deleteReservation/:id", reservationController.deleteReservation);
 
-router.get("/listReservation");
+router.get("/listReservationUser/:idCliente", reservationController.getReservationUser);
 
 router.put("/updateReservation/:id", reservationController.updateReservation);
 
