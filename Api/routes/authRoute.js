@@ -5,12 +5,14 @@ var router = express.Router();
 
 router.post("/login", autenticacaoController.login);
 
-router.get("/logout", autenticacaoController.logout);
+router.get("/logout", autenticacaoController.logout, autenticacaoController.verifyToken);
 
 router.post("/register", autenticacaoController.createUser);
 
-router.put("/updateUser/:id", autenticacaoController.updatePassword);
+router.put("/updateUser/:userId", autenticacaoController.updatePassword, autenticacaoController.verifyToken);
 
-router.post("/deleteUser/:id", autenticacaoController.deleteUser);
+router.post("/deleteUser/:userId", autenticacaoController.deleteUser);
+
+router.param("userId", autenticacaoController.getUserId);
 
 module.exports = router;

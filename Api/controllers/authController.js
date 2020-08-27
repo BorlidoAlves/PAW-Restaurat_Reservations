@@ -3,6 +3,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 var config = require("../authconfig"); 
 
+
 var autenticacaoController = {};
 
 autenticacaoController.createUser = function(req,res){
@@ -11,7 +12,6 @@ autenticacaoController.createUser = function(req,res){
     User.create({
         email: req.body.email,
         password: hashedPassword,
-        tipo: req.body.tipo,
         contacto: req.body.contacto,
     }, function(err, user){
         
@@ -66,7 +66,7 @@ autenticacaoController.verifyToken = function (req, res, next) {
 autenticacaoController.updatePassword = async function(req,res){
     var hashedPassword = bcrypt.hashSync(req.body.password);
 
-    User.findByIdAndUpdate({_id: req.params.id}, {$set:{password: hashedPassword, contacto: req.body.contacto}}, function(err){
+    User.findByIdAndUpdate({_id: req.params.userId}, {$set:{password: hashedPassword, contacto: req.body.contacto}}, function(err){
         if(err)
             console.log(err);
         else
@@ -76,11 +76,23 @@ autenticacaoController.updatePassword = async function(req,res){
 };
 
 autenticacaoController.deleteUser = function(req, res){
-
-    User.findByIdAndDelete({_id: req.params.id}, function(err){
+    
+    User.findByIdAndDelete({_id: req.params.userId}, function(err){
         if(err) return res.status(400).send("Não foi possível eliminar");
 
         res.status(200).send("Eliminado com sucesso !");
+    });
+}
+
+autenticacaoController.getUserId = function(req, res, next, id){
+
+    User.findOne({_id: id}, function(err, user){
+        if(err){
+            next(err);
+        }else{
+            req.user = user;
+            next();
+        }
     });
 }
 
