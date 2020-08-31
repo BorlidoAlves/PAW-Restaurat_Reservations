@@ -2,22 +2,25 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ementaSchema = new Schema({
-    nomePrato:{
+    appetizer:{
         type: String,
-        unique: [true, "Já exite um prato com este nome"],
-        require:[true, "É obrigatório ter um nome."]
+        require:[true, "É obrigatório ter aperitivo."]
     },
-    confecao:{
+    mainCourse:{
         type: String,
-        require: [true, "É obrigatório ter uma breve explicação do prato."],
+        require: [true, "É obrigatório ter um prato principal."],
     },
-    dose:{
-        type: Number,
-        require: [true, "É obrigatório ter um preço da dose."],
+    soup:{
+        type: String,
+        require: [true, "É obrigatório ter sopa."],
     },
-    meiaDose:{
+    dessert:{
+        type: String,
+        require: [true, "É obrigatório ter uma sobremesa."],
+    },
+    price:{
         type: Number,
-        require: [true, "É obrigatório ter um preço da meia dose."],
+        require: [true, "É obrigatório ter preço."],
     }
 });
 

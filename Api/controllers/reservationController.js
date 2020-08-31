@@ -5,11 +5,13 @@ var reservationController = {};
 reservationController.createReservation = function(req, res){
 
     Reservation.create({
-        idCliente: req.params.id,
+        idCliente: req.params.userId,
         horario: req.body.horario,
         numPessoas: req.body.numPessoas,
         pedidoEspecial: req.body.pedidoEspecial
+        
     }, function(err){
+        
         if(err) return res.status(400).send("Não foi possivel efetuar a reserva");
 
         res.status(200).send("Reserva efetuada !");
@@ -37,7 +39,7 @@ reservationController.updateReservation = function(req, res){
 
 reservationController.getReservationUser = function(req, res){
 
-    Reservation.find({idCliente: req.params.idCliente}, function(err, reservations){
+    Reservation.find({idCliente: req.params.userId}, function(err, reservations){
 
         if(err) return res.status(400).send("Não foi possível encontrar");
 

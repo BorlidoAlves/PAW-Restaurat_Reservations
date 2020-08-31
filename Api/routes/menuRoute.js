@@ -7,7 +7,7 @@ router.post("/createMenu", menuController.createMenu);
 
 router.post("/deleteMenu/:id", menuController.deleteMenu);
 
-router.get("/listMenu");
+router.get("/listMenu", menuController.listMenu);
 
 router.put("/updateMenu/:id", menuController.updateMenu);
 
