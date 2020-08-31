@@ -5,14 +5,15 @@ var menuController = {};
 menuController.createMenu = function(req, res){
 
     Menu.create({
-        nomePrato: req.body.nomePrato,
-        confecao: req.body.confecao,
-        dose: req.body.dose,
-        meiaDose: req.body.meiaDose
+        appetizer: req.body.appetizer,
+        mainCourse: req.body.mainCourse,
+        soup: req.body.soup,
+        dessert: req.body.dessert,
+        price: req.body.price
     }, function(err){
-        if(err) return res.status(400).send("Não foi possivel gravar o prato");
+        if(err) return res.status(400).send("Não foi possivel gravar a ementa");
 
-        res.status(200).send("Prato criado");
+        res.status(200).send("Ementa criado");
     });
 };
 
@@ -27,12 +28,20 @@ menuController.deleteMenu = function(req, res){
 
 menuController.updateMenu = function(req, res){
 
-    console.log(req.params.id);
-    Menu.findByIdAndUpdate({_id: req.params.id}, {$set:{nomePrato: req.body.nomePrato, confecao: req.body.confecao, dose: req.body.dose, meiaDose: req.body.meiaDose}}, function(err){
+    Menu.findByIdAndUpdate({_id: req.params.id}, {$set:{appetizer: req.body.appetizer, mainCourse: req.body.mainCourse, soup: req.body.soup, dessert: req.body.dessert, price: req.body.price}}, function(err){
         
         if(err) return res.status(400).send("Não foi possível atualizar");
 
         res.status(200).send("Atualizado com sucesso !");
+    });
+}
+
+menuController.listMenu = function(req, res){
+
+    Menu.find({}, function(err, menu){
+        if(err) return res.status(400).send("Não foi possível listar o Menu");
+
+        res.json(menu);
     });
 }
 

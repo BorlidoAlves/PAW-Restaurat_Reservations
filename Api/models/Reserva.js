@@ -3,8 +3,7 @@ var Schema = mongoose.Schema;
 
 var reservaSchema = new Schema({
     idCliente:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
         require: [true, "Não está a receber o id do cliente"]
     },
     horario: {
