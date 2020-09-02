@@ -6,6 +6,9 @@ var reservaSchema = new Schema({
         type: String,
         require: [true, "Não está a receber o id do cliente"]
     },
+    mesReserva:{
+        type: Number
+    },
     horario: {
         type: Date,
         require: [true, "É obrigatório escolher um horário"]

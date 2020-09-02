@@ -1,11 +1,13 @@
 var Reservation = require("../models/Reserva");
 
 var reservationController = {};
+var diasMes = [31,28,31,30,31,30,31,31,30,31,30,31];
 
 reservationController.createReservation = function(req, res){
 
     Reservation.create({
         idCliente: req.params.userId,
+        mesReserva: new Date(req.body.horario).getMonth() + 1,
         horario: req.body.horario,
         numPessoas: req.body.numPessoas,
         pedidoEspecial: req.body.pedidoEspecial
@@ -45,6 +47,23 @@ reservationController.getReservationUser = function(req, res){
 
         res.json(reservations);
     });
+}
+
+reservationController.getAverageReserv = function(req, res){
+
+    var mes = Number(req.body.mes);
+    Reservation.aggregate([{$match: {mesReserva: mes}}, {$group: {_id: "$mesReserva" , numPessoas: {$sum:"$numPessoas"}}}], function(err, pessoas){
+       if(err) res.status(400).send(" Erro ");
+       
+       if(!pessoas[0]) res.status(200).send("Não há reservas neste mês")
+       
+       else{
+
+        var average = pessoas[0].numPessoas / diasMes[mes-1];
+
+        res.json({numPessoasAverage: average});
+       }});
+
 }
 
 module.exports = reservationController;
