@@ -14,6 +14,10 @@ router.put("/updateReservation/:id", reservationController.updateReservation, au
 
 router.get("/getAverageReserv", reservationController.getAverageReserv);
 
+router.get("/getAveragePessoas", reservationController.getAveragePessoas);
+
+router.get("/getAverageCancel", reservationController.getAverageCancel);
+
 router.param("userId", autenticacaoController.getUserId);
 
 module.exports = router;
