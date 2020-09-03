@@ -9,6 +9,7 @@ reservationController.createReservation = function (req, res) {
         idCliente: req.params.userId,
         mesReserva: new Date(req.body.horario).getMonth() + 1,
         horario: req.body.horario,
+        ementas: req.body.ementas,
         numPessoas: req.body.numPessoas,
         pedidoEspecial: req.body.pedidoEspecial
 
@@ -23,6 +24,7 @@ reservationController.createReservation = function (req, res) {
 reservationController.deleteReservation = function (req, res) {
 
     Reservation.findByIdAndDelete({ _id: req.params.id }, function (err) {
+        
         if (err) return res.status(400).send("Não foi possível eliminar");
 
         res.status(200).send("Eliminado com sucesso !");
@@ -32,6 +34,16 @@ reservationController.deleteReservation = function (req, res) {
 reservationController.updateReservation = function (req, res) {
 
     Reservation.findByIdAndUpdate({ _id: req.params.id }, { $set: { horario: req.body.horario, numPessoas: req.body.numPessoas, pedidoEspecial: req.body.pedidoEspecial, estado: "Pendente" } }, function (err) {
+
+        if (err) return res.status(400).send("Não foi possível atualizar");
+
+        res.status(200).send("Atualizado com sucesso !");
+    });
+}
+
+reservationController.updateStatus = function (req, res) {
+
+    Reservation.findByIdAndUpdate({ _id: req.params.id }, { $set: {estado: req.body.estado} }, function (err) {
 
         if (err) return res.status(400).send("Não foi possível atualizar");
 
@@ -67,7 +79,6 @@ reservationController.getAveragePessoas = function (req, res) {
 
         }
     });
-
 }
 
 reservationController.getAverageReserv = function (req, res) {
@@ -106,7 +117,6 @@ reservationController.getAverageCancel = function (req, res) {
             res.json({ numReservAverage: average });
         }
     });
-
 }
 
 module.exports = reservationController;

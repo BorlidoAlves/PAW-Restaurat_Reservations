@@ -1,6 +1,7 @@
 var express = require("express");
 var reservationController = require("../controllers/reservationController");
 var autenticacaoController = require("../controllers/authController");
+const { updateStatus } = require("../controllers/reservationController");
 
 var router = express.Router();
 
@@ -11,6 +12,8 @@ router.post("/deleteReservation/:id", reservationController.deleteReservation, a
 router.get("/listReservationUser/:userId", reservationController.getReservationUser, autenticacaoController.verifyToken);
 
 router.put("/updateReservation/:id", reservationController.updateReservation, autenticacaoController.verifyToken);
+
+router.put("/updateStatus/:id", reservationController.updateStatus);
 
 router.get("/getAverageReserv", reservationController.getAverageReserv);
 

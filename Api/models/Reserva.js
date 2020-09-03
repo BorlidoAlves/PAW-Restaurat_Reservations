@@ -13,6 +13,16 @@ var reservaSchema = new Schema({
         type: Date,
         require: [true, "É obrigatório escolher um horário"]
     },
+    ementas:[
+        {
+            nomeEmenta:{ type: String },
+            ementaPessoas:{ type: Number },
+            preco:{ type: Number }
+        }
+    ],
+    precoTotal:{
+        type: Number
+    },
     numPessoas: {
         type: Number,
         require: [true, "É obrigatório introduzir o num de pessoas"]
