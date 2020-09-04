@@ -11,7 +11,7 @@ router.post("/register", autenticacaoController.createUser);
 
 router.put("/updateUser/:userId", autenticacaoController.updatePassword, autenticacaoController.verifyToken);
 
-router.post("/deleteUser/:userId", autenticacaoController.deleteUser);
+router.delete("/deleteUser/:userId", autenticacaoController.deleteUser);
 
 router.param("userId", autenticacaoController.getUserId);
 

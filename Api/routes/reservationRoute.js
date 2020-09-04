@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.post("/createReservation/:userId", reservationController.createReservation, autenticacaoController.verifyToken);
 
-router.post("/deleteReservation/:id", reservationController.deleteReservation, autenticacaoController.verifyToken);
+router.delete("/deleteReservation/:id", reservationController.deleteReservation, autenticacaoController.verifyToken);
 
 router.get("/listReservationUser/:userId", reservationController.getReservationUser, autenticacaoController.verifyToken);
 
@@ -15,11 +15,11 @@ router.put("/updateReservation/:id", reservationController.updateReservation, au
 
 router.put("/updateStatus/:id", reservationController.updateStatus);
 
-router.get("/getAverageReserv", reservationController.getAverageReserv);
+router.post("/getAverageReserv", reservationController.getAverageReserv);
 
-router.get("/getAveragePessoas", reservationController.getAveragePessoas);
+router.post("/getAveragePessoas", reservationController.getAveragePessoas);
 
-router.get("/getAverageCancel", reservationController.getAverageCancel);
+router.post("/getAverageCancel", reservationController.getAverageCancel);
 
 router.param("userId", autenticacaoController.getUserId);
 

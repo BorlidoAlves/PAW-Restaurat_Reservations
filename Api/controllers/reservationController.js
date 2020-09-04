@@ -33,7 +33,7 @@ reservationController.deleteReservation = function (req, res) {
 
 reservationController.updateReservation = function (req, res) {
 
-    Reservation.findByIdAndUpdate({ _id: req.params.id }, { $set: { horario: req.body.horario, numPessoas: req.body.numPessoas, pedidoEspecial: req.body.pedidoEspecial, estado: "Pendente" } }, function (err) {
+    Reservation.findByIdAndUpdate({ _id: req.params.id }, { $set: { horario: req.body.horario, mesReserva: new Date(req.body.horario).getMonth() + 1, numPessoas: req.body.numPessoas, ementas: req.body.ementas, pedidoEspecial: req.body.pedidoEspecial, estado: "Pendente" } }, function (err) {
 
         if (err) return res.status(400).send("Não foi possível atualizar");
 
