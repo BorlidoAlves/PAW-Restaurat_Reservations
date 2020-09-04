@@ -1,0 +1,15 @@
+<div class="login-form">
+    <h2>Login</h2>
+    <div class="form-group">
+        <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="email" name="email" placeholder="Email" required />
+        <br>
+        <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="password" name="password" type="password" placeholder="Password" required />
+        <br>
+        <br>
+        <button class="btn btn-outline-secondary" (click)="login()">Login</button>
+        <br>
+        <a routerLink="/registar" routerLinkActive="is-selected">Criar conta</a>
+    </div>
+</div>

@@ -1,0 +1,868 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Rest API to control restaurant reservations",
+    "version": "1.0.0",
+    "title": "Restaurant API"
+  },
+  "host": "localhost:3000",
+  "basePath": "/apiDoc",
+  "tags": [
+    {
+      "name": "Menu",
+      "description": "Menu management"
+    },
+    {
+      "name": "RestConf",
+      "description": "Restaurant configuration"
+    },
+    {
+      "name": "Reservation",
+      "description": "Reservation management"
+    },
+    {
+      "name": "User",
+      "description": "User management"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Does the client login",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "body",
+            "description": "User email is the user identifier",
+            "required": true
+          },
+          {
+            "name": "Password",
+            "in": "body",
+            "description": "User account password",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Database problem"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Does the client logout",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Creates a new client account",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "body",
+            "description": "User email",
+            "required": true
+          },
+          {
+            "name": "Password",
+            "in": "body",
+            "description": "User account password",
+            "required": true
+          },
+          {
+            "name": "Contact",
+            "in": "body",
+            "description": "User client",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to create User"
+          }
+        }
+      }
+    },
+    "/deleteUser/{userId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete a client account",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "It needs the userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to delete User"
+          }
+        }
+      }
+    },
+    "/updateUser/{userId}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updates a client account",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "usedId",
+            "in": "path",
+            "description": "It needs the userId"
+          },
+          {
+            "name": "Password",
+            "in": "body",
+            "description": "Update Password"
+          },
+          {
+            "name": "Contact",
+            "in": "body",
+            "description": "Update Contact"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to update User"
+          }
+        }
+      }
+    },
+    "/createReservation/{userId}": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Creates a reservation for User",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "It needs the userId"
+          },
+          {
+            "name": "monthReserv",
+            "in": "body",
+            "description": "Month of the reservation",
+            "required": true
+          },
+          {
+            "name": "schedule",
+            "in": "body",
+            "description": "Schedule with hour and date",
+            "required": true
+          },
+          {
+            "name": "menus",
+            "in": "body",
+            "description": "Menus from the reservation"
+          },
+          {
+            "name": "numPeople",
+            "in": "body",
+            "description": "People to reserve",
+            "required": true
+          },
+          {
+            "name": "specialAsk",
+            "in": "body",
+            "description": "If you want to add something to your reservetion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to create reservation"
+          }
+        }
+      }
+    },
+    "/deleteReservation/{id}": {
+      "delete": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Delete a reservation",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "reserveId",
+            "in": "path",
+            "description": "It needs the reserveId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to delete"
+          }
+        }
+      }
+    },
+    "/updateReservation/{id}": {
+      "put": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Update a reservation",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "reserveId",
+            "in": "path",
+            "description": "It needs the reserveId"
+          },
+          {
+            "name": "monthReserv",
+            "in": "body",
+            "description": "Month of the reservation"
+          },
+          {
+            "name": "schedule",
+            "in": "body",
+            "description": "Schedule with hour and date"
+          },
+          {
+            "name": "menus",
+            "in": "body",
+            "description": "Menus from the reservation"
+          },
+          {
+            "name": "numPeople",
+            "in": "body",
+            "description": "People to reserve"
+          },
+          {
+            "name": "specialAsk",
+            "in": "body",
+            "description": "If you want to add something to your reservetion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to update"
+          }
+        }
+      }
+    },
+    "/listReservationUser/{userId}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Returns a list of User reservation",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "It needs the reserveId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Reserves not found"
+          }
+        }
+      }
+    },
+    "/updateStatus/{id}": {
+      "put": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Update a reservation status",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "reserveId",
+            "in": "path",
+            "description": "It needs the reserveId"
+          },
+          {
+            "name": "status",
+            "in": "body",
+            "description": "Status from the reservation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to update"
+          }
+        }
+      }
+    },
+    "/getAverageReserv": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Returns the average of reservations in a specific month",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "month",
+            "in": "body",
+            "description": "Month of analyze"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No reservations in this month"
+          }
+        }
+      }
+    },
+    "/getAveragePeople": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Returns the average of people in a specific month",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "month",
+            "in": "body",
+            "description": "Month of analyze"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No reservations in this month"
+          }
+        }
+      }
+    },
+    "/getAverageCancel": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Returns the average of cancellations in a specific month",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "body",
+            "description": "Month of analyze"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No reservations in this month"
+          }
+        }
+      }
+    },
+    "/createMenu": {
+      "post": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Creates a Menu",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "appetizer",
+            "in": "body",
+            "description": "Appetizer of the menu"
+          },
+          {
+            "name": "mainCourse",
+            "in": "body",
+            "description": "Main course of the menu"
+          },
+          {
+            "name": "soup",
+            "in": "body",
+            "description": "Soup of the menu"
+          },
+          {
+            "name": "dessert",
+            "in": "body",
+            "description": "Dessert of the menu"
+          },
+          {
+            "name": "price",
+            "in": "body",
+            "description": "Price of the menu"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to create menu"
+          }
+        }
+      }
+    },
+    "/updateMenu/{id}": {
+      "put": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Updates a Menu",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "appetizer",
+            "in": "body",
+            "description": "Appetizer of the menu"
+          },
+          {
+            "name": "mainCourse",
+            "in": "body",
+            "description": "Main course of the menu"
+          },
+          {
+            "name": "soup",
+            "in": "body",
+            "description": "Soup of the menu"
+          },
+          {
+            "name": "dessert",
+            "in": "body",
+            "description": "Dessert of the menu"
+          },
+          {
+            "name": "price",
+            "in": "body",
+            "description": "Price of the menu"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to update menu"
+          }
+        }
+      }
+    },
+    "/deleteMenu/{id}": {
+      "delete": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Deletes a Menu",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the menu"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to delete menu"
+          }
+        }
+      }
+    },
+    "/listMenu": {
+      "get": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Lists the Menus",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to list menus"
+          }
+        }
+      }
+    },
+    "/createConf": {
+      "post": {
+        "tags": [
+          "RestConf"
+        ],
+        "summary": "Creates a new configuration for the restaurant",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "numMaxP",
+            "in": "body",
+            "description": "Max number of people in the restaurant at the same time"
+          },
+          {
+            "name": "openTimeLunch",
+            "in": "body",
+            "description": "Opening time for lunch"
+          },
+          {
+            "name": "closeTimeLunch",
+            "in": "body",
+            "description": "Closing time for lunch"
+          },
+          {
+            "name": "openTimeDinner",
+            "in": "body",
+            "description": "Opening time for dinner"
+          },
+          {
+            "name": "closeTimeDinner",
+            "in": "body",
+            "description": "Closing time for dinner"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to create the array of times"
+          }
+        }
+      }
+    },
+    "/getTimeReserv": {
+      "get": {
+        "tags": [
+          "RestConf"
+        ],
+        "summary": "Returns a array with the eating times",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Not possible to find the array of times"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "email",
+        "password",
+        "contact"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "number"
+        }
+      }
+    },
+    "RestConf": {
+      "required": [
+        "numMaxP",
+        "openTimeLunch",
+        "closeTimeLunch",
+        "openTimeDinner",
+        "closeTimeDinner",
+        "timeToEat"
+      ],
+      "properties": {
+        "numMaxP": {
+          "type": "number"
+        },
+        "openTimeLunch": {
+          "type": "date"
+        },
+        "closeTimeLunch": {
+          "type": "date"
+        },
+        "openTimeDinner": {
+          "type": "date"
+        },
+        "closeTimeDinner": {
+          "type": "date"
+        },
+        "timeToEat": {
+          "type": "number"
+        },
+        "timeAvailable": {
+          "type": "date"
+        }
+      }
+    },
+    "Reservation": {
+      "required": [
+        "idClient",
+        "schedule",
+        "menus",
+        "numP"
+      ],
+      "properties": {
+        "idClient": {
+          "type": "string"
+        },
+        "monthReserv": {
+          "type": "number"
+        },
+        "schedule": {
+          "type": "date"
+        },
+        "menus": {
+          "type": "menuName:string, numPeMenu:number, price:number"
+        },
+        "totalPrice": {
+          "type": "number"
+        },
+        "numP": {
+          "type": "number"
+        },
+        "specialAsk": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "Menu": {
+      "required": [
+        "appetizer",
+        "mainCourse",
+        "soup",
+        "dessert",
+        "price"
+      ],
+      "properties": {
+        "appetizer": {
+          "type": "string"
+        },
+        "mainCourse": {
+          "type": "string"
+        },
+        "soup": {
+          "type": "string"
+        },
+        "dessert": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
