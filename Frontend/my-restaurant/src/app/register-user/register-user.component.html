@@ -1,0 +1,27 @@
+<div class="flex-container">
+    <h2 class="title">Registar Utilizador</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Email</span>
+        </div>
+        <input [(ngModel)]="user.email"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+        </div>
+        <input type="password" [(ngModel)]="user.password" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Contacto</span>
+        </div>
+        <input [(ngModel)]="user.contacto" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div>
+        <button class="btn btn-outline-secondary" (click)="registerUser()">Registar</button>
+    </div>
+</div>
