@@ -18,5 +18,9 @@ export class RestService {
 
   registerUser(user: User): Observable<User> {
     return this.http.post<User>('http://localhost:3000/api/register', JSON.stringify(user), httpOptions);
-  } 
+  }
+  
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>('http://localhost:3000/api/getUser/' + id);
+  }
 }

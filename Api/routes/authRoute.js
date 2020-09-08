@@ -13,6 +13,10 @@ router.put("/updateUser/:userId", autenticacaoController.updatePassword, autenti
 
 router.delete("/deleteUser/:userId", autenticacaoController.deleteUser);
 
+router.get("/getUsers", autenticacaoController.getUsers);
+
+router.get("/getUser/:userId", autenticacaoController.getUser);
+
 router.param("userId", autenticacaoController.getUserId);
 
 module.exports = router;

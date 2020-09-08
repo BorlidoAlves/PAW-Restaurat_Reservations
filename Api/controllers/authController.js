@@ -84,6 +84,24 @@ autenticacaoController.deleteUser = function(req, res){
     });
 }
 
+autenticacaoController.getUser = function(req, res){
+
+    User.findById({_id: req.params.userId}, function(err, user){
+        if(err) return res.status(400).send("Não foi possivel encontrar o utilizador");
+
+        res.json(user);
+    });
+}
+
+autenticacaoController.getUsers = function(req, res){
+
+    User.find({}, function(err, users){
+        if(err) return res.status(400).send("Não foi possivel encontrar Utilizadores");
+
+        res.json(users);
+    });
+}
+
 autenticacaoController.getUserId = function(req, res, next, id){
 
     User.findOne({_id: id}, function(err, user){
