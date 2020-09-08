@@ -63,14 +63,27 @@ autenticacaoController.verifyToken = function (req, res, next) {
 };
 
 
-autenticacaoController.updatePassword = async function(req,res){
-    var hashedPassword = bcrypt.hashSync(req.body.password);
+autenticacaoController.updateUser = async function(req,res){
+    
 
-    User.findByIdAndUpdate({_id: req.params.userId}, {$set:{password: hashedPassword, contacto: req.body.contacto}}, function(err){
+    User.findByIdAndUpdate({_id: req.params.userId}, {$set:{email: req.body.email, contacto: req.body.contacto}}, function(err){
         if(err)
             console.log(err);
         else
             res.send("Utilizador editado com sucesso");
+    });
+ 
+};
+
+autenticacaoController.updatePassword = async function(req,res){
+
+    var hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
+    User.findByIdAndUpdate({_id: req.params.userId}, {$set:{password: hashedPassword}}, function(err){
+        if(err)
+            console.log(err);
+        else
+            res.send("Password editada com sucesso");
     });
  
 };

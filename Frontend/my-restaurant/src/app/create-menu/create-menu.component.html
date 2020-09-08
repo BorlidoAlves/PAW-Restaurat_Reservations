@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="flex-container">
+    <h2 class="title">Criação Ementa</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Entrada</span>
+        </div>
+        <input [(ngModel)]="menu.appetizer"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Prato Principal</span>
+        </div>
+        <input [(ngModel)]="menu.mainCourse" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Sopa</span>
+        </div>
+        <input [(ngModel)]="menu.soup" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Sobremesa</span>
+        </div>
+        <input [(ngModel)]="menu.dessert" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Preço ( € )</span>
+        </div>
+        <input [(ngModel)]="menu.price" 
+        class="form-control" type="number" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div>
+        <button class="btn btn-outline-secondary" (click)="createMenu()">Criar</button>
+    </div>
+</div>

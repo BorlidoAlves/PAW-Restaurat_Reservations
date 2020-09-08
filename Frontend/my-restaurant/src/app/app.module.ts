@@ -10,6 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ChangeUserComponent } from './change-user/change-user.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { CreateMenuComponent } from './create-menu/create-menu.component';
+import { ListMenuComponent } from './list-menu/list-menu.component';
+import { ConfRestaurantComponent } from './conf-restaurant/conf-restaurant.component';
+import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -18,13 +26,21 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     LoginComponent,
     HomepageComponent,
     RegisterUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    ChangeUserComponent,
+    EditPasswordComponent,
+    CreateMenuComponent,
+    ListMenuComponent,
+    ConfRestaurantComponent,
+    EditMenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

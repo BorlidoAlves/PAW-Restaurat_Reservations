@@ -14,7 +14,9 @@
                     <td>{{user.email}}</td>
                     <td>{{user.contacto}}</td>
                     <td> <input type="button" class="btn btn-outline-secondary"
-                         value="Editar"></td>
+                        (click)="delete()" value="Eliminar Conta"></td>
+                    <td> <input type="button" class="btn btn-outline-secondary"
+                        (click)="edit()" value="Editar"></td>
                 </tr>
             </tbody>
         </table>

@@ -9,7 +9,9 @@ router.get("/logout", autenticacaoController.logout, autenticacaoController.veri
 
 router.post("/register", autenticacaoController.createUser);
 
-router.put("/updateUser/:userId", autenticacaoController.updatePassword, autenticacaoController.verifyToken);
+router.put("/updateUser/:userId", autenticacaoController.updateUser, autenticacaoController.verifyToken);
+
+router.put("/updatePassword/:userId", autenticacaoController.updatePassword, autenticacaoController.verifyToken);
 
 router.delete("/deleteUser/:userId", autenticacaoController.deleteUser);
 

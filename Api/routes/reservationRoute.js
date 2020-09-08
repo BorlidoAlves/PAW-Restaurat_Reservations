@@ -1,7 +1,6 @@
 var express = require("express");
 var reservationController = require("../controllers/reservationController");
 var autenticacaoController = require("../controllers/authController");
-const { updateStatus } = require("../controllers/reservationController");
 
 var router = express.Router();
 

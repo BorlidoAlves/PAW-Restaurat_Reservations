@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
-import { User } from '../models/user';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -10,9 +11,12 @@ import { User } from '../models/user';
 export class EditUserComponent implements OnInit {
 
   user: any;
+  currentUser: any;
 
   constructor(
-    public rest: RestService
+    public rest: RestService,
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -20,11 +24,21 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(){
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.rest.getUser(currentUser.id).subscribe((data: {}) => {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.rest.getUser(this.currentUser.id).subscribe((data: {}) => {
       this.user = data;
       console.log(this.user);
     });
+  }
+
+  delete(){
+    this.rest.deleteUser(this.currentUser.id).subscribe();
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  edit(){
+    this.router.navigate(['/changeUser']);
   }
 
 }

@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="flex-container">
+    <h2 class="title">Lista de menus</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Menu</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Prato pricipal</th>
+                    <th scope="col">Sopa</th>
+                    <th scope="col">Sobremesa</th>
+                    <th scope="col">Preço</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let menu of menus; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{menu.appetizer}}</td>
+                    <td>{{menu.mainCourse}}</td>
+                    <td>{{menu.soup}}</td>
+                    <td>{{menu.dessert}}</td>
+                    <td>{{menu.price}}€</td>
+                    <td> <input type="button" class="btn btn-outline-secondary"
+                        (click)="delete(menu._id)" value="Eliminar Menu"></td>
+                    <td> <input type="button" class="btn btn-outline-secondary"
+                        (click)="edit(menu._id)" value="Editar Menu"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

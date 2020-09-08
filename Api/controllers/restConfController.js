@@ -4,24 +4,26 @@ var restConfController = {};
 
 restConfController.createRestConf = function(req, res){
 
+    var date = "2020-08-31T"
+
     RestConf.deleteMany({}, function(err){
         if(err) res.status(400).send("Não foi possivel eliminar db");
     });
 
     RestConf.create({
         numMaxP: req.body.numMaxP,
-        openTimeLunch: req.body.openTimeLunch,
-        closeTimeLunch: req.body.closeTimeLunch,
-        openTimeDinner: req.body.openTimeDinner,
-        closeTimeDinner: req.body.closeTimeDinner,
+        openTimeLunch: date+req.body.openTimeLunch,
+        closeTimeLunch: date+req.body.closeTimeLunch,
+        openTimeDinner:  date+req.body.openTimeDinner,
+        closeTimeDinner: date+req.body.closeTimeDinner,
         timeToEat: req.body.timeToEat,
     }, function(err){
         
-        if(err) return res.status(400).send("Não foi possivel efetuar a configuração");
+        if(err) return res.status(400).send(err);
 
         var arraytime = [];
-        var i = new Date(Date.parse(req.body.openTimeLunch) + 60 * 60000);
-        var closeTimeL = new Date(Date.parse(req.body.closeTimeLunch) + 60 * 60000); 
+        var i = new Date(Date.parse(date+req.body.openTimeLunch) + 60 * 60000);
+        var closeTimeL = new Date(Date.parse(date+req.body.closeTimeLunch) + 60 * 60000); 
        
         console.log(i)
 
