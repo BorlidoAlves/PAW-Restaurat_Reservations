@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="/homepage">Verde Pinho - Restaurante</a>
+        <a class="navbar-brand" href="/homepage">MyRestaurant</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li *ngIf="tipo == 'Utilizador'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -9,9 +9,8 @@
                     Agendamento de refeições
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Agendar refeição</a>
-                    <a class="dropdown-item" href="#">Visualizar historial de refeições</a>
-                    <a class="dropdown-item" href="#">Editar marcação</a>
+                    <a class="dropdown-item" href="/createReservation">Agendar refeição</a>
+                    <a class="dropdown-item" href="/listReservation">Visualizar historial de refeições</a>
                 </div>
             </li>
             <li *ngIf="tipo == 'Utilizador'" class="nav-item dropdown">
@@ -23,6 +22,9 @@
                     <a class="dropdown-item" href="/edit"> Ver Perfil/Editar</a>
                     <a class="dropdown-item" href="/editPassword">Alterar Password</a>
                 </div>
+            </li>
+            <li *ngIf="tipo == 'Utilizador'" class="nav-item">
+                <a class="nav-link" href="/listMenusUser">Menus</a>
             </li>
             <li *ngIf="tipo == 'Admin'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -39,6 +41,12 @@
             </li>
             <li *ngIf="tipo == 'Admin'" class="nav-item">
                 <a class="nav-link" href="/confRest">Configuração Restaurante</a>
+            </li>
+            <li *ngIf="tipo == 'Admin'" class="nav-item">
+                <a class="nav-link" href="/listUsers">Lista de Clientes</a>
+            </li>
+            <li *ngIf="tipo == 'Admin'" class="nav-item">
+                <a class="nav-link" href="/listReservations">Lista de Reservas</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

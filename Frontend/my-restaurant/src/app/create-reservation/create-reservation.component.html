@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="flex-container">
+    <h2 class="title">Criar Reserva</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Numero de pessoas</span>
+        </div>
+        <input [(ngModel)]="reserv.numPessoas" type="number" class="form-control" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Pedido Especial</span>
+        </div>
+        <input [(ngModel)]="reserv.pedidoEspecial" class="form-control" aria-label="Small" type="text"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Horario Reserva</span>
+        </div>
+        <select (ngModel)="horarios" (ngModelChange)="setNewHour($event)" name="horarios" id="horarios" class="custom-select">
+            <option *ngFor="let horario of horarios" [ngvalue]="horario">{{horario}}</option>
+        </select>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Data Reserva</span>
+        </div>
+        <input [(ngModel)]="date" type="date" class="form-control" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div>
+        <button class="btn btn-outline-secondary" (click)="createReserv()">Criar Reserva</button>
+    </div>
+</div>

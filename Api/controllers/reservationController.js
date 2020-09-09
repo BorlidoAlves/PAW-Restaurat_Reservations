@@ -8,7 +8,7 @@ reservationController.createReservation = function (req, res) {
     Reservation.create({
         idCliente: req.params.userId,
         mesReserva: new Date(req.body.horario).getMonth() + 1,
-        horario: req.body.horario,
+        horario: new Date(Date.parse(req.body.horario) + 60 * 60000),
         ementas: req.body.ementas,
         numPessoas: req.body.numPessoas,
         pedidoEspecial: req.body.pedidoEspecial
@@ -61,6 +61,16 @@ reservationController.getReservationUser = function (req, res) {
     });
 }
 
+reservationController.getReservations = function (req, res) {
+
+    Reservation.find({}, function (err, reservations) {
+
+        if (err) return res.status(400).send("Não foi possível encontrar");
+
+        res.json(reservations);
+    });
+}
+
 reservationController.getAveragePessoas = function (req, res) {
 
     var mes = Number(req.body.mes);
@@ -69,7 +79,7 @@ reservationController.getAveragePessoas = function (req, res) {
 
         if (err) res.status(400).send(" Erro ");
 
-        if (!pessoas[0]) res.status(200).send("Não há reservas neste mês")
+        if (!pessoas[0]) res.status(200).json({numAverage: 0});
 
         else {
 
@@ -89,7 +99,7 @@ reservationController.getAverageReserv = function (req, res) {
     
         if (err) res.status(400).send(" Erro ");
 
-        if (!reserv[0]) res.status(200).send("Não há reservas neste mês")
+        if (!reserv[0]) res.status(200).json({numAverage: 0});
 
         else {
 
@@ -108,7 +118,7 @@ reservationController.getAverageCancel = function (req, res) {
     
         if (err) res.status(400).send(" Erro ");
 
-        if (!cancel[0]) res.status(200).send("Não há reservas canceladas neste mês")
+        if (!cancel[0]) res.status(200).json({numAverage: 0});
 
         else {
 

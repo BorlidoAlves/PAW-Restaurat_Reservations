@@ -6,7 +6,8 @@ import { Password } from './models/password';
 import { Menu } from './models/menu';
 import { RestConf } from './models/restConf';
 import { Month } from './models/month';
-
+import { Reserv } from './models/reserv';
+import { Status } from './models/status';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -75,5 +76,29 @@ export class RestService {
   
   getAverageReserv(mes: Month): Observable<Month>{
     return this.http.post<Month>('http://localhost:3000/api/getAverageReserv', JSON.stringify(mes), httpOptions);
+  }
+
+  createReservation(reserv: Reserv, id: string): Observable<Reserv>{
+    return this.http.post<Reserv>('http://localhost:3000/api/createReservation/' + id, JSON.stringify(reserv), httpOptions);
+  }
+
+  getHorario(): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/getTimeReserv');
+  }
+
+  getListReservUser(id: string): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/listReservationUser/' + id);
+  }
+
+  updateStatus(id: string, status: Status): Observable<Status>{
+    return this.http.put<Status>('http://localhost:3000/api/updateStatus/' + id, JSON.stringify(status), httpOptions);
+  }
+
+  getUsers(): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/getUsers');
+  }
+
+  getReservations(): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/listReservations');
   }
 }

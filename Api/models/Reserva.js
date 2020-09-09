@@ -32,7 +32,7 @@ var reservaSchema = new Schema({
     },
     estado:{
         type: String,
-        enum: ["Confirmado","Pendente","Cancelada"],
+        enum: ["Confirmada","Pendente","Cancelada"],
         default: "Pendente"
     }
 });

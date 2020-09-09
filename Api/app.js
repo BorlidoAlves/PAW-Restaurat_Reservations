@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var swaggerUi = require('swagger-ui-express');
 var swaggerDoc = require('./swagger.json');
+var bcrypt = require("bcryptjs");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,6 +17,8 @@ var restConfRouter = require('./routes/restConfRoute');
 
 var app = express();
 var mongoose = require('mongoose');
+const User = require('./models/User');
+const RestConf = require('./models/RestConf');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,7 +41,44 @@ app.use('/users', usersRouter);
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost:27017/PjEspecial',{ useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('connection succesful'))
+  .then(async() => {
+    console.log('connection succesful');
+    const admin = await User.findOne({tipo: "Admin"}).select("+password");
+    const confRest = await RestConf.findOne({});
+    if(!admin){
+      var hashedPassword = bcrypt.hashSync("12345", 8);
+      admin = await new User({
+        email: "8160567@estg.ipp.pt",
+        password: hashedPassword,
+        tipo: "Admin",
+        contacto: "963942517"
+      })
+        .save()
+        .catch(console.error);
+
+    } 
+    
+    if(!confRest){
+      confRest = await new RestConf({
+        numMaxP: 40,
+        openTimeLunch: "2020-08-31T11:00:00.000Z",
+        closeTimeLunch: "2020-08-31T14:00:00.000Z",
+        openTimeDinner: "2020-08-31T19:00:00.000Z",
+        closeTimeDinner: "2020-08-31T22:00:00.000Z",
+        timeToEat: 30,
+        timeAvailable: ["12:00","12:30","13:00","13:30","14:00","14:30","15:00","20:00","20:30","21:00","21:30","22:00","22:30","23:00"]
+      })
+      .save()
+      .catch(console.error);
+    }
+
+    if(admin && confRest){
+      console.log("Admin:");
+      console.table([admin.toJSON()]);
+      console.log("Conf Rest");
+      console.table([confRest.toJSON()]);
+    }
+  })
   .catch((err) => console.log(err));
 
 mongoose.set('useCreateIndex', true);

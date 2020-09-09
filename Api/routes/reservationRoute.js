@@ -10,6 +10,8 @@ router.delete("/deleteReservation/:id", reservationController.deleteReservation,
 
 router.get("/listReservationUser/:userId", reservationController.getReservationUser, autenticacaoController.verifyToken);
 
+router.get("/listReservations", reservationController.getReservations, autenticacaoController.verifyToken);
+
 router.put("/updateReservation/:id", reservationController.updateReservation, autenticacaoController.verifyToken);
 
 router.put("/updateStatus/:id", reservationController.updateStatus);

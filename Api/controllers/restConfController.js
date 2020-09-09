@@ -22,18 +22,45 @@ restConfController.createRestConf = function(req, res){
         if(err) return res.status(400).send(err);
 
         var arraytime = [];
-        var i = new Date(Date.parse(date+req.body.openTimeLunch) + 60 * 60000);
-        var closeTimeL = new Date(Date.parse(date+req.body.closeTimeLunch) + 60 * 60000); 
-       
-        console.log(i)
+        var i = new Date(Date.parse(date+req.body.openTimeLunch));
+        var closeTimeL = new Date(Date.parse(date+req.body.closeTimeLunch)); 
+
+        var j = new Date(Date.parse(date+req.body.openTimeDinner));
+        var closeTimeD = new Date(Date.parse(date+req.body.closeTimeDinner));         
+
+        var hour = i.getHours();
+        var minutes = (i.getMinutes()<10?'0':'') + i.getMinutes();
+        
+        var formatedHour = hour + ":" + minutes;
 
         while(i <= closeTimeL){
-          
-            arraytime.push(i);
+
+            arraytime.push(formatedHour);
 
             i = addMinutes(i, req.body.timeToEat);
 
-            console.log(i)
+            hour = i.getHours();
+            minutes = (i.getMinutes()<10?'0':'') + i.getMinutes();
+
+            formatedHour = hour + ":" + minutes;
+
+        }
+
+        hour = j.getHours();
+        minutes = (j.getMinutes()<10?'0':'') + j.getMinutes();
+        
+        formatedHour = hour + ":" + minutes;
+
+        while(j <= closeTimeD){
+
+            arraytime.push(formatedHour);
+
+            j = addMinutes(j, req.body.timeToEat);
+
+            hour = j.getHours();
+            minutes = (j.getMinutes()<10?'0':'') + j.getMinutes();
+
+            formatedHour = hour + ":" + minutes;
 
         }
         
