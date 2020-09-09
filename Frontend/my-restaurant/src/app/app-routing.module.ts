@@ -12,6 +12,11 @@ import { ConfRestaurantComponent } from './conf-restaurant/conf-restaurant.compo
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateReservationComponent } from './create-reservation/create-reservation.component';
+import { ListReservationComponent } from './list-reservation/list-reservation.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { ListReservationsComponent } from './list-reservations/list-reservations.component';
+import { EditStatusComponent } from './edit-status/edit-status.component';
+import { ListMenuUserComponent } from './list-menu-user/list-menu-user.component';
 
 const routes: Routes = [
   {
@@ -61,6 +66,26 @@ const routes: Routes = [
   {
     path:'createReservation',
     component: CreateReservationComponent
+  },
+  {
+    path:'listReservation',
+    component: ListReservationComponent
+  },
+  {
+    path:'listUsers',
+    component:ListUsersComponent
+  },
+  {
+    path:'listReservations',
+    component: ListReservationsComponent
+  },
+  {
+    path:'editStatus/:id',
+    component: EditStatusComponent
+  },
+  {
+    path:'listMenusUser',
+    component: ListMenuUserComponent
   }
 ];
 

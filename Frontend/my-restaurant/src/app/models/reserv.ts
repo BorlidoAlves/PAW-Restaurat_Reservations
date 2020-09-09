@@ -4,5 +4,6 @@ export class Reserv{
     horario: string;
     ementas: [];
     numPessoas: number;
-    pedidoEspecial;
+    pedidoEspecial: string;
+    estado: string;
 }

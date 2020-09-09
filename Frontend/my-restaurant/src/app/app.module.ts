@@ -19,6 +19,11 @@ import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateReservationComponent } from './create-reservation/create-reservation.component';
+import { ListReservationComponent } from './list-reservation/list-reservation.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { ListReservationsComponent } from './list-reservations/list-reservations.component';
+import { EditStatusComponent } from './edit-status/edit-status.component';
+import { ListMenuUserComponent } from './list-menu-user/list-menu-user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { CreateReservationComponent } from './create-reservation/create-reservat
     ConfRestaurantComponent,
     EditMenuComponent,
     DashboardComponent,
-    CreateReservationComponent
+    CreateReservationComponent,
+    ListReservationComponent,
+    ListUsersComponent,
+    ListReservationsComponent,
+    EditStatusComponent,
+    ListMenuUserComponent
   ],
   imports: [
     BrowserModule,

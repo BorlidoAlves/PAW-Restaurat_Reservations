@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="flex-container">
+    <h2 class="title">Lista de Reservas</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Reserva</th>
+                    <th scope="col">Numero Pessoas</th>
+                    <th scope="col">Horario</th>
+                    <th scope="col">Pedido Especial</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let reserv of reservs; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{reserv.numPessoas}}</td>
+                    <td>{{reserv.horario}}</td>
+                    <td>{{reserv.pedidoEspecial}}</td>
+                    <td>{{reserv.estado}}</td>
+                    <td> <input type="button" class="btn btn-outline-secondary"
+                        (click)="cancel(reserv._id)" value="Cancelar Reserva"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
