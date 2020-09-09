@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <div class="flex-container">
-<select [(ngModel)]="mes" name="mes" id="mes" class="custom-select">
+  <br><br>
+<select [(ngModel)]="mes.mes" name="mes" id="mes" class="custom-select">
+    <option value="" disabled selected>--Mês--</option>
     <option value="1">Janeiro</option>
     <option value="2">Fevereiro</option>
     <option value="3">Março</option>
@@ -10,13 +12,15 @@
     <option value="7">Julho</option>
     <option value="8">Agosto</option>
     <option value="9">Setembro</option>
-    <option value="10">Outobro</option>
+    <option value="10">Outubro</option>
     <option value="11">Novembro</option>
     <option value="12">Dezembro</option>
   </select>
+  <br><br>
   <div>
     <button class="btn btn-outline-secondary" (click)="month()">Update</button>
 </div>
+<br><br>
 <div>
     <div>
       <div style="display: block">
@@ -24,6 +28,7 @@
           [datasets]="barChartData"
           [labels]="barChartLabels"
           [options]="barChartOptions"
+          [plugins]="barChartPlugins"
           [legend]="barChartLegend"
           [chartType]="barChartType">
         </canvas>

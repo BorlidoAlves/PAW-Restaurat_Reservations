@@ -4,6 +4,7 @@ import { RestService } from '../rest.service';
 import { Label } from 'ng2-charts';
 import { Month } from '../models/month';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,12 +12,14 @@ import { Month } from '../models/month';
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() mes: any;
+  @Input() mes: Month = new Month();
 
-  averagePeople: Month;
-  averageCancel: Month;
-  averageReserv: Month;
+  averagePeople: Month = new Month();
+  averageCancel: Month = new Month(); 
+  averageReserv: Month = new Month();
 
+  data: [];
+  
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -29,48 +32,50 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  public barChartLabels: Label[] = ['2006', '2007', '2008'];
+  public barChartLabels: Label[] = ['Média diaria durante um mês'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
+  public barChartPlugins = [];
 
 
   public barChartData: ChartDataSets[] = [
-    { data: [this.averageReserv.mes], label: 'Média Reservas' },
-    { data: [this.averagePeople.mes], label: 'Média Pessoas' },
-    { data: [this.averageCancel.mes], label: 'Média Cancelamento'}
+    { data: [this.averageReserv.numAverage], label: 'Média Reservas' },
+    { data: [this.averagePeople.numAverage], label: 'Média Pessoas' },
+    { data: [this.averageCancel.numAverage], label: 'Média Cancelamento'}
   ];
 
   constructor(
     private rest: RestService,
 
-  ) { }
+  ){}
 
   ngOnInit(): void {
-    
+   
   }
 
   month(){
-    this.getAverageReserv();
-    this.getAveragePeople();
-    this.getAverageCancel();
-  }
 
-  getAverageReserv(){
     this.rest.getAverageReserv(this.mes).subscribe((data) => {
-      this.averageReserv = data;
+      this.averageReserv = data;  
     });
-  }
-
-  getAveragePeople(){
-    this.rest.getAverageReserv(this.mes).subscribe((data) => {
+    
+    this.rest.getAveragePeople(this.mes).subscribe((data) => {
       this.averagePeople = data;
     });
-  }
-
-  getAverageCancel(){
-    this.rest.getAverageReserv(this.mes).subscribe((data) => {
+    
+    this.rest.getAverageCancel(this.mes).subscribe((data) => {
       this.averageCancel = data;
     });
+    
+    const dataR = [this.averageReserv.numAverage];
+    
+    const dataP = [this.averagePeople.numAverage];
+
+    const dataC = [this.averageCancel.numAverage];
+    
+    this.barChartData[0].data = dataR;
+    this.barChartData[1].data = dataP;
+    this.barChartData[2].data = dataC;
   }
 
 }

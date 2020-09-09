@@ -75,7 +75,7 @@ reservationController.getAveragePessoas = function (req, res) {
 
             var average = pessoas[0].numPessoas / diasMes[mes - 1];
 
-            res.json({ numPessoasAverage: average });
+            res.json({ numAverage: average });
 
         }
     });
@@ -95,7 +95,7 @@ reservationController.getAverageReserv = function (req, res) {
 
             var average = reserv[0].numReserv / diasMes[mes - 1];
 
-            res.json({ numReservAverage: average });
+            res.json({ numAverage: average });
         }
     });
 }
@@ -114,7 +114,7 @@ reservationController.getAverageCancel = function (req, res) {
 
             var average = cancel[0].numCancel / diasMes[mes - 1];
 
-            res.json({ numReservAverage: average });
+            res.json({ numAverage: average });
         }
     });
 }
