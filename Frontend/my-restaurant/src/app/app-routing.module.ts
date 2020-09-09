@@ -11,6 +11,7 @@ import { ListMenuComponent } from './list-menu/list-menu.component';
 import { ConfRestaurantComponent } from './conf-restaurant/conf-restaurant.component';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateReservationComponent } from './create-reservation/create-reservation.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path:'dashboard',
     component: DashboardComponent
+  },
+  {
+    path:'createReservation',
+    component: CreateReservationComponent
   }
 ];
 

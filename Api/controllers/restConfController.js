@@ -22,18 +22,24 @@ restConfController.createRestConf = function(req, res){
         if(err) return res.status(400).send(err);
 
         var arraytime = [];
-        var i = new Date(Date.parse(date+req.body.openTimeLunch) + 60 * 60000);
-        var closeTimeL = new Date(Date.parse(date+req.body.closeTimeLunch) + 60 * 60000); 
-       
-        console.log(i)
+        var i = new Date(Date.parse(date+req.body.openTimeLunch));
+        var closeTimeL = new Date(Date.parse(date+req.body.closeTimeLunch)); 
+
+        var hour = i.getHours();
+        var minutes = i.getMinutes();
+        var formatedHour = hour + ":" + minutes;
+
+        console.log(formatedHour);
 
         while(i <= closeTimeL){
           
-            arraytime.push(i);
+            arraytime.push(formatedHour);
 
             i = addMinutes(i, req.body.timeToEat);
 
-            console.log(i)
+            hour = i.getHours();
+            minutes = i.getMinutes();
+            formatedHour = hour + ":" + minutes;
 
         }
         

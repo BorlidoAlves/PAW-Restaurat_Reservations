@@ -18,6 +18,7 @@ import { ConfRestaurantComponent } from './conf-restaurant/conf-restaurant.compo
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
+import { CreateReservationComponent } from './create-reservation/create-reservation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ChartsModule } from 'ng2-charts';
     ListMenuComponent,
     ConfRestaurantComponent,
     EditMenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateReservationComponent
   ],
   imports: [
     BrowserModule,

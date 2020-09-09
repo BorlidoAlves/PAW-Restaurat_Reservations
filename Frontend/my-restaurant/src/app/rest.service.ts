@@ -6,7 +6,7 @@ import { Password } from './models/password';
 import { Menu } from './models/menu';
 import { RestConf } from './models/restConf';
 import { Month } from './models/month';
-
+import { Reserv } from './models/reserv';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -75,5 +75,13 @@ export class RestService {
   
   getAverageReserv(mes: Month): Observable<Month>{
     return this.http.post<Month>('http://localhost:3000/api/getAverageReserv', JSON.stringify(mes), httpOptions);
+  }
+
+  createReservation(reserv: Reserv, id: string): Observable<Reserv>{
+    return this.http.post<Reserv>('http://localhost:3000/api/createReservation/' + id, JSON.stringify(reserv), httpOptions);
+  }
+
+  getHorario(): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/api/getTimeReserv');
   }
 }
