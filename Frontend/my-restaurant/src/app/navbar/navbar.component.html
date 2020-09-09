@@ -1,73 +1,44 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="">CovidStore</a>
+        <a class="navbar-brand" href="/homepage">Verde Pinho - Restaurante</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="/homepage">HomePage<span class="sr-only">(current)</span></a>
-            </li>
             <li *ngIf="tipo == 'Utilizador'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Reclamação
+                    Agendamento de refeições
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/criarReclamacao">Criar Reclamação</a>
-                    <a class="dropdown-item" href="#">Editar Reclamação</a>
-                    <a class="dropdown-item" href="#">Ver Reclamação</a>
+                    <a class="dropdown-item" href="#">Agendar refeição</a>
+                    <a class="dropdown-item" href="#">Visualizar historial de refeições</a>
+                    <a class="dropdown-item" href="#">Editar marcação</a>
                 </div>
             </li>
             <li *ngIf="tipo == 'Utilizador'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Encomenda
+                    Perfil
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Criar Encomenda</a>
-                    <a class="dropdown-item" href="#">Ver Estado das Encomedas</a>
+                    <a class="dropdown-item" href="/edit"> Ver Perfil/Editar</a>
+                    <a class="dropdown-item" href="/editPassword">Alterar Password</a>
                 </div>
             </li>
             <li *ngIf="tipo == 'Admin'" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Gestão de Comerciantes
+                    Ementas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Listar Comerciantes</a>
-                    <a class="dropdown-item" href="#">Editar Comerciante</a>
-                    <a class="dropdown-item" href="#">Eliminar Comerciante</a>
+                    <a class="dropdown-item" href="/createMenu">Criar Ementa</a>
+                    <a class="dropdown-item" href="/listMenus">Listar/Editar Ementas</a>
                 </div>
             </li>
-            <li *ngIf="tipo == 'Comerciante'" class="nav-item">
-                <a class="nav-link" href="">Dashboard</a>
+            <li *ngIf="tipo == 'Admin'" class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
-            <li *ngIf="tipo == 'Comerciante'" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Encomendas
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ver Encomendas</a>
-                    <a class="dropdown-item" href="#">Editar Encomenda</a>
-                </div>
-            </li>
-            <li *ngIf="tipo == 'Comerciante'" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Reclamações
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="">Ver Reclamações</a>
-                </div>
-            </li>
-            <li *ngIf="tipo == 'Comerciante'" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Produtos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/adicionarProduto">Criar Produto</a>
-                </div>
+            <li *ngIf="tipo == 'Admin'" class="nav-item">
+                <a class="nav-link" href="/confRest">Configuração Restaurante</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="flex-container">
+    <h2 class="title">Cofiguração do restaurante</h2><br><br>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Nº máximo de pessoas por turno</span>
+        </div>
+        <input [(ngModel)]="restConf.numMaxP" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Abretura para Almoço</span>
+        </div>
+        <input [(ngModel)]="restConf.openTimeLunch" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Fecho de Almoço</span>
+        </div>
+        <input [(ngModel)]="restConf.closeTimeLunch" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Abertura de Jantar</span>
+        </div>
+        <input [(ngModel)]="restConf.openTimeDinner" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Fecho de Jantar</span>
+        </div>
+        <input [(ngModel)]="restConf.closeTimeDinner" 
+        class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Duração da Refeição (min)</span>
+        </div>
+        <input [(ngModel)]="restConf.timeToEat" 
+        class="form-control" type="number" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+    </div>
+    <div>
+        <button class="btn btn-outline-secondary" (click)="createConf()">Criar Configuração</button>
+    </div>
+</div>
+

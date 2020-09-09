@@ -11,7 +11,7 @@ menuController.createMenu = function(req, res){
         dessert: req.body.dessert,
         price: req.body.price
     }, function(err){
-        if(err) return res.status(400).send("Não foi possivel gravar a ementa");
+        if(err) return res.status(400).send(err);
 
         res.status(200).send("Ementa criado");
     });
@@ -40,6 +40,14 @@ menuController.listMenu = function(req, res){
 
     Menu.find({}, function(err, menu){
         if(err) return res.status(400).send("Não foi possível listar o Menu");
+
+        res.json(menu);
+    });
+}
+
+menuController.getMenu = function(req, res){
+    Menu.findById({_id: req.params.id}, function(err, menu){
+        if(err) return res.status(400).send(err);
 
         res.json(menu);
     });
