@@ -14,13 +14,13 @@ router.get("/listReservations", reservationController.getReservations, autentica
 
 router.put("/updateReservation/:id", reservationController.updateReservation, autenticacaoController.verifyToken);
 
-router.put("/updateStatus/:id", reservationController.updateStatus);
+router.put("/updateStatus/:id", reservationController.updateStatus, autenticacaoController.verifyToken);
 
-router.post("/getAverageReserv", reservationController.getAverageReserv);
+router.post("/getAverageReserv", reservationController.getAverageReserv, autenticacaoController.verifyToken);
 
-router.post("/getAveragePessoas", reservationController.getAveragePessoas);
+router.post("/getAveragePessoas", reservationController.getAveragePessoas, autenticacaoController.verifyToken);
 
-router.post("/getAverageCancel", reservationController.getAverageCancel);
+router.post("/getAverageCancel", reservationController.getAverageCancel, autenticacaoController.verifyToken);
 
 router.param("userId", autenticacaoController.getUserId);
 

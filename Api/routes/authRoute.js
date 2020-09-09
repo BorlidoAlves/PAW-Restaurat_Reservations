@@ -13,12 +13,12 @@ router.put("/updateUser/:userId", autenticacaoController.updateUser, autenticaca
 
 router.put("/updatePassword/:userId", autenticacaoController.updatePassword, autenticacaoController.verifyToken);
 
-router.delete("/deleteUser/:userId", autenticacaoController.deleteUser);
+router.delete("/deleteUser/:userId", autenticacaoController.deleteUser, autenticacaoController.verifyToken);
 
-router.get("/getUsers", autenticacaoController.getUsers);
+router.get("/getUsers", autenticacaoController.getUsers, autenticacaoController.verifyToken);
 
-router.get("/getUser/:userId", autenticacaoController.getUser);
+router.get("/getUser/:userId", autenticacaoController.getUser, autenticacaoController.verifyToken);
 
-router.param("userId", autenticacaoController.getUserId);
+router.param("userId", autenticacaoController.getUserId, autenticacaoController.verifyToken);
 
 module.exports = router;
