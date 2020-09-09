@@ -17,6 +17,8 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
 import { EditStatusComponent } from './edit-status/edit-status.component';
 import { ListMenuUserComponent } from './list-menu-user/list-menu-user.component';
+import { UserGuardService } from './user-guard.service';
+import { AdminGuardService } from './admin-guard.service';
 
 const routes: Routes = [
   {
@@ -25,7 +27,8 @@ const routes: Routes = [
   },
   {
     path:'homepage',
-    component: HomepageComponent
+    component: HomepageComponent,
+    
   },
   {
     path:'register',
@@ -33,59 +36,73 @@ const routes: Routes = [
   },
   {
     path:'edit',
-    component: EditUserComponent
+    component: EditUserComponent,
+    canActivate: [UserGuardService]
   },
   {
     path:'changeUser',
-    component: ChangeUserComponent
+    component: ChangeUserComponent,
+    canActivate: [UserGuardService]
   },
   {
     path:'editPassword',
-    component: EditPasswordComponent
+    component: EditPasswordComponent,
+    canActivate: [UserGuardService]
   },
   {
     path:'createMenu',
-    component: CreateMenuComponent
+    component: CreateMenuComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'listMenus',
-    component: ListMenuComponent
+    component: ListMenuComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'confRest',
-    component: ConfRestaurantComponent
+    component: ConfRestaurantComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'editMenu/:id',
-    component: EditMenuComponent
+    component: EditMenuComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'createReservation',
-    component: CreateReservationComponent
+    component: CreateReservationComponent,
+    canActivate: [UserGuardService]
   },
   {
     path:'listReservation',
-    component: ListReservationComponent
+    component: ListReservationComponent,
+    canActivate: [UserGuardService]
   },
   {
     path:'listUsers',
-    component:ListUsersComponent
+    component:ListUsersComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'listReservations',
-    component: ListReservationsComponent
+    component: ListReservationsComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'editStatus/:id',
-    component: EditStatusComponent
+    component: EditStatusComponent,
+    canActivate: [AdminGuardService]
   },
   {
     path:'listMenusUser',
-    component: ListMenuUserComponent
+    component: ListMenuUserComponent,
+    canActivate: [UserGuardService]
   }
 ];
 
